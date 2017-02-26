@@ -10,7 +10,7 @@
 \usepackage{listings}
 \usepackage{changepage}
 
-\name{A GIRL HAS NO NAME}
+\name{John Gaskin}
 \class{Computer Science 81}
 \assignment{Homework 6}
 \duedate{2/28/17}
@@ -34,7 +34,7 @@ You have seen models for propositional logic (an assignment of true/false values
 Let us say a model $M$ for CTL formulas consists of
 \begin{itemize}
     \item a set of states $S$ (representing possible ``states'' or ``configurations'' of a system)
-    \item a binary relation $``\ra''$ between states (a specification of whether $s \ra s'$ is true or false, for any two states $s\in S$ and $s'\in S$, meaning the system can go from state $s$ directly to state $s'$)
+    \item a binary relation ``$\ra$'' between states (a specification of whether $s \ra s'$ is true or false, for any two states $s\in S$ and $s'\in S$, meaning the system can go from state $s$ directly to state $s'$)
     \item a specification of what predicate-logic formulas are true in \ul{each} state $s$
 \end{itemize}
 Normally we assume that for every state $s$, there is at least one \emph{next} state $s'$ such that $s \ra s'$. If our system is not totally deterministic, $s$ might have \emph{many} such next states (e.g., $s \ra s'$ and $s\ra s''$ are both true, even when $s'$ and $s''$ are different states)\\\\
@@ -69,9 +69,9 @@ even if it's never again true in the future (i.e., if $\neg p$ holds for all sta
 \begin{problem}[1.]
     [15 points] Using the above definitions, which of the following CTL formulas are equivalent (both true or both false) for every model $M$ and every state $s$?  Carefully justify your answers (using complete sentences).
     \begin{enumerate}[label=\Alph*.]
-        \item (EF φ) ∨ (EF ψ)   and    EF (φ ∨ ψ)
-        \item (AF φ) ∨ (AF ψ)    and   AF (φ ∨ ψ)
-        \item EF (¬ϕ)   and    ¬(AF ϕ).
+        \item $(\EF \phi) \lor (\EF \psi)$   and    $\EF (\phi \lor \psi)$
+        \item $(\AF \phi) \lor (\AF \psi)$    and   $\AF (\phi \lor \psi)$
+        \item $\EF (\neg\phi)$   and    $\neg(\AF \phi)$.
     \end{enumerate}
 \end{problem}
 
@@ -103,14 +103,14 @@ while (true) {
     We can view this program as describing a CTL model where the states are the possible memory contents of the program, the $\ra$ relation describes how memory changes from moment to moment over time in this program, and our predicate-logic formulas are claims about the contents of memory in a particular program state.\\\\
     Which of the following logical propositions are true (starting at the beginning of the program)?  Explain your answers; you do not need to provide a full formal proof, but your explanation should be clear and convincing.
     \begin{enumerate}[label=\Alph*.]
-        \item $AG  (a[42] == 0)$
-        \item $\displaystyle AG\pn{\sum_{j=0}^{j<100}a\bk{j}<100}$~~~~~[careful]
-        \item $EF  (a[42] == 1)$
-        \item $AF  (a[42] == 1)$
-        \item $EG  (a[42] == 0)$
-        \item $AG  (AF  (a[42] == 0))$
-        \item $AG  (EF  (a[42] == 1))$
-        \item $EF  (AG  (a[42] == 0))$
+        \item $\AG  (a[42] == 0)$
+        \item $\displaystyle \AG\pn{\sum_{j=0}^{j<100}a\bk{j}<100}$~~~~~[careful]
+        \item $\EF  (a[42] == 1)$
+        \item $\AF  (a[42] == 1)$
+        \item $\EG  (a[42] == 0)$
+        \item $\AG  (\AF  (a[42] == 0))$
+        \item $\AG  (\EF  (a[42] == 1))$
+        \item $\EF  (AG  (a[42] == 0))$
     \end{enumerate}
 \end{problem}
 
