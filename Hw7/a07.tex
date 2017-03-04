@@ -112,3 +112,37 @@
 \newpage
 
 \end{document}
+
+\iffalse
+Towers of Hanoi starter code.
+% 5-disk Towers of Hanoi for Prover9
+
+% Any disk can move to an empty peg
+transition( state([w:x],[],z), state(x,[w],z) ).
+transition( state([w:x],y,[]), state(x,y,[w]) ).
+transition( state([],[w:y],z), state([w],y,z) ).
+transition( state(x,[w:y],[]), state(x,y,[w]) ).
+transition( state([],y,[w:z]), state([w],y,z) ).
+transition( state(x,[],[w:z]), state(x,[w],z) ).
+
+% A disk w can move to a nonempty peg
+%   if it is smaller than the top disk u on that peg
+transition( state([w:x],[u:y],z), state(x,[w,u:y],z) ) <- w<u.
+transition( state([w:x],y,[u:z]), state(x,y,[w,u:z]) ) <- w<u.
+transition( state([u:x],[w:y],z), state([w,u:x],y,z) ) <- w<u.
+transition( state(x,[w:y],[u:z]), state(x,y,[w,u:z]) ) <- w<u.
+transition( state([u:x],y,[w:z]), state([w,u:x],y,z) ) <- w<u.
+transition( state(x,[u:y],[w:z]), state(x,[w,u:y],z) ) <- w<u.
+
+% Useful facts about small numbers
+1<2. 1<3. 2<3. 1<4. 2<4. 3<4. 1<5. 2<5. 3<5. 4<5.
+
+% A state is reachable if it's the start state,
+% or if it is one step beyond a reachable state.
+reachable( state([1,2,3,4,5],[],[]) ).
+reachable(y) <- reachable(x) & transition(x,y).
+
+% Query: is the final state with all disks on the 3rd peg reachable?
+%   Let's assume not, and see if that would be consistent with the rules.
+-reachable( state([],[],[1,2,3,4,5]) ).
+\fi
